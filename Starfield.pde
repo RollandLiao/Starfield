@@ -1,10 +1,13 @@
 //your code here
 NormalParticle [] bob;
+NormalParticle bobby;
 void setup()
 {
   //your code here
+  frameRate(20);
   size(600, 600);
-  bob = new NormalParticle[600];
+  bob = new NormalParticle[800];
+  bobby = new JumboParticle();
   for (int i = 0; i < bob.length; i++)
   {
     bob[i] = new NormalParticle();
@@ -19,6 +22,8 @@ void draw()
     bob[i].show();
     bob[i].move();
   }
+  bobby.show();
+  bobby.move();
 }
 class NormalParticle
 {
@@ -31,7 +36,8 @@ class NormalParticle
     y = 300;
     speed = (Math.random() * 10);
     angle = (Math.random()*2*Math.PI);
-    bColor = (int)(Math.random() * 300);
+    bColor = (int)(Math.random() * 100);
+    
   }
   public void move()
   {
@@ -41,7 +47,7 @@ class NormalParticle
   public void show()
   {
     noStroke();
-    fill(255);
+    fill((float)x,(float)y, 100);
     ellipse((float)x, (float)y,10 , 10);
   }
 }
@@ -55,7 +61,17 @@ class OddballParticle//uses an interface
 {
   //your code here
 }
-class JumboParticle //uses inheritance
+class JumboParticle extends NormalParticle//uses inheritance
 {
   //your code here
+  public void show()
+  {
+    fill(bColor,-1 * bColor,-2 * bColor);
+    ellipse((float)x, (float)y,30 , 30);
+    while(bColor > 255)
+    {
+    bColor = 0;
+    }
+    bColor = bColor + 70;
+  }
 }
