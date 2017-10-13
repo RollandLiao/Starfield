@@ -6,7 +6,7 @@ void setup()
   //your code here
   frameRate(60);
   size(600, 600);
-  bob = new NormalParticle[12000];
+  bob = new NormalParticle[5000];
   bobby = new JumboParticle();
   for (int i = 0; i < bob.length; i++)
   {
@@ -23,9 +23,9 @@ void draw()
     bob[i].show();
     bob[i].move();
     bob[i].center();
-    //  bobby.show();
-    //  bobby.move();
-    //  bobby.center();
+    bobby.show();
+    bobby.move();
+    bobby.center();
   }
 }
 class NormalParticle
@@ -47,8 +47,9 @@ class NormalParticle
   {
     x = x + (speed * Math.cos(angle));
     y = y + (speed * Math.sin(angle));
-    speed = speed + 1;
-    angle = angle + 1;
+    //speed = speed + 1;
+   // speed = speed + (int)(Math.random()*5-2);
+    //angle = angle + 1;
   }
   public void show()
   {
@@ -58,7 +59,7 @@ class NormalParticle
   }
   public void center()
   {
-    if (x > 610 || y > 610)
+    while (x > 610 || y > 610 || x < -10 || y < -10)
     {
       x = 300;
       y = 300;
